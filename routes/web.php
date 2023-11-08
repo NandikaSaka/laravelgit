@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource('mahasiswaData', MahasiswaDataController::class);
+
+route::get('/', [MahasiswaDataController::class, 'index']);
