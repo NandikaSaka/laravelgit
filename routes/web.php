@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::resource('mahasiswaData', MahasiswaDataController::class);
 
 Route::get('/', function (){
-    return redirect()->route('mahasiswaData.index');
+    return view('mahasiswaData.index');
 });
