@@ -18,6 +18,4 @@ Route::resource('mahasiswaData', MahasiswaDataController::class);
 
 Route::get('mahasiswaData', 'MahasiswaDataController@index');
 
-Route::get('/', function (){
-    return view('mahasiswaData.index');
-});
+Route::get('/', [MahasiswaDataController::class, 'index']);
