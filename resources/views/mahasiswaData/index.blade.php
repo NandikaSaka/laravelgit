@@ -36,11 +36,11 @@
                 <td>{{ $item->jurusan }}</td>
                 <td>
                     <a href="{{ url('mahasiswaData/'.$item->nim.'/edit') }}" class="btn btn-sm">Edit</a>
-                    <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus data?')" class="d-inline" action="{{ url('mahasiswa/'.$item->nim) }}" method="post">
+                    <<form @confirm('Apakah Anda yakin ingin menghapus data?') class="d-inline" action="{{ url('mahasiswaData/'.$item->nim) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                    </form>                    
                 </td>
             </tr>
             <?php $i++ ?>
