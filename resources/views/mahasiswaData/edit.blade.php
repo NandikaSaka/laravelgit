@@ -2,7 +2,7 @@
 
 @section('konten')
 
-<form action="{{ url('mahasiwsaData/'.$data->nim) }}" method="post">
+<form action="{{ url('mahasiswaData/'.$data->nim) }}" method="post">
 @csrf
 @method('PUT')
 <div class="my-3 p-3 bg-body rounded shadow-sm">
