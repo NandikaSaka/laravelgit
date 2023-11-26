@@ -117,7 +117,6 @@ class MahasiswaDataController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nim' => 'required|numeric|unique:mahasiswa_data,nim,' . $id,
             'nama' => 'required',
             'alamat' => 'required',
             'email' => 'required',
