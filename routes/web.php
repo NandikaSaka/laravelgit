@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('mahasiswaData', MahasiswaDataController::class);
+Route::resource('mahasiswaData', MahasiswaDataController::class)->names('mahasiswaData');
 
 Route::get('/', [MahasiswaDataController::class, 'index']);
