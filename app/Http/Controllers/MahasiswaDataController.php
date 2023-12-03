@@ -15,19 +15,19 @@ class MahasiswaDataController extends Controller
      */
     public function index(Request $request)
     {
-        $katakunci = $request->katakunci;
-        $jumlahbaris = 6;
-        if (strlen($katakunci)){
-            $data = mahasiswaData::where('nim', 'like', "%$katakunci%")
-                ->orWhere('nama', 'like', "%$katakunci%")
-                ->orWhere('alamat', 'like', "%$katakunci%")
-                ->orWhere('email', 'like', "%$katakunci%")
-                ->orWhere('jurusan', 'like', "%$katakunci%")
-                ->paginate($jumlahbaris);
+        $kata_kunci = $request->kata_kunci;
+        $jumlah_baris = 6;
+        if (strlen($kata_kunci)){
+            $data = mahasiswaData::where('nim', 'like', "%$kata_kunci%")
+                ->orWhere('nama', 'like', "%$kata_kunci%")
+                ->orWhere('alamat', 'like', "%$kata_kunci%")
+                ->orWhere('email', 'like', "%$kata_kunci%")
+                ->orWhere('jurusan', 'like', "%$kata_kunci%")
+                ->paginate($jumlah_baris);
         } else {
-            $data = mahasiswaData::orderBy('nim', 'desc')->paginate($jumlahbaris);
+            $data = mahasiswaData::orderBy('nim', 'desc')->paginate($jumlah_baris);
         }
-        return view('mahasiswaData.index')->with('data', $data);
+        return view('mahasiswaData.index')->with('data', $data)->with('jumlahbaris', $jumlah_baris);
     }
 
     /**
@@ -78,6 +78,9 @@ class MahasiswaDataController extends Controller
             'jurusan' => $request->jurusan,
         ];
         mahasiswaData::insert($data);
+
+        Session::forget(['nim', 'nama', 'alamat', 'email', 'jurusan']);
+
         return redirect()->to('mahasiswaData')->with('success', 'Data berhasil ditambahkan!');
     }
 
@@ -131,6 +134,9 @@ class MahasiswaDataController extends Controller
             'jurusan' => $request->jurusan,
         ];
         mahasiswaData::where('nim', $id)->update($data);
+
+        Session::forget(['nim', 'nama', 'alamat', 'email', 'jurusan']);
+
         return redirect()->to('mahasiswaData')->with('success', 'Data berhasil diubah!');
     }
 
@@ -143,6 +149,6 @@ class MahasiswaDataController extends Controller
     public function destroy($id)
     {
         mahasiswaData::where('nim', $id)->delete();
-        return redirect()->to('mahasiswaData')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('mahasiswaData.index')->with('success', 'Data berhasil dihapus!');
     }
 }
